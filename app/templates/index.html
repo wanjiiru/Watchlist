@@ -1,6 +1,12 @@
     {%extends 'base.html'%}
     {% import 'macros.html' as macro%}
 
+    {% block styles%}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+    {% endblock %}
+<!-- Content block -->
+
 
     {% block content %}
     <!-- Popular movie -->
@@ -20,6 +26,8 @@
         </ul>
 
         {% endblock %}
+
+
 
 
 
