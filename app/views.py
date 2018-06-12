@@ -1,11 +1,11 @@
 from app import app
-from .models import reviews
+from .models import review
 from .forms import ReviewForm
 
 from .request import get_movies, get_movie, search_movie
 from flask import render_template, request, redirect, url_for
 
-Review = reviews.Review
+Review = review.Review
 
 
 # Views
@@ -16,8 +16,9 @@ def movie(id):
     '''
     movie = get_movie(id)
     title = f'{movie.title}'
+    reviews = Review.get_reviews(movie.id)
 
-    return render_template('movie.html', title=title, movie=movie)
+    return render_template('movie.html', title=title, movie=movie,reviews=reviews)
 
 
 # Views

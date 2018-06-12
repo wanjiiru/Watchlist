@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% import 'macros.html' as macro %}
 
 
 
@@ -13,18 +14,37 @@
 <div class="container">
 
     <!-- Poster background -->
-    <div class="row">
+    <div class="row text-center">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 movie-details">
             <h3>{{ movie.title }}</h3>
 
             <p class="overview"> {{ movie.overview }}</p>
 
             <p class="ratings"> <b> {{ movie.vote_average }}</b> - <i>{{ movie.vote_count}} votes </i> </p>
-            <a class="ratings" href="/movie/review/new/{{movie.id}}"> Write a new review</a>
+            <!--<a class="ratings" href="/movie/review/new/{{movie.id}}"> Write a new review</a>-->
 
         </div>
 
     </div>
 
+
+
+ <div class="row text-center">
+
+        <h1 style="text-align: center">Reviews</h1>
+        <hr>
+     <br>
+     <br>
+
+        {% if reviews %}
+            {{macro.displayReviews(reviews)}}
+
+        {% else%}
+            <h3 class="text-center">This movie has no reviews </h3><br><br>
+
+            <a class="btn btn-success btn-lg " href="/movie/review/new/{{movie.id}}"> Write a new review</a>
+        {% endif %}
+
+    </div>
 </div>
 {% endblock %}
